@@ -61,7 +61,7 @@ testing <-testing[,colSums(is.na(testing)) == 0]
 * training: `r nrow(training)` observations of `r ncol(training)` variables
 * testing: `r nrow(testing)` observations of `r ncol(testing)` variables
 
-We realize as well that the first seven columns (X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp, new_window, num_window) contain variables that are not useful for our model (i.e. the participant name). We then remove them from the dataset.
+We realize as well that the first seven columns (*X*, *user_name*, *raw_timestamp_part_1*, *raw_timestamp_part_2*, *cvtd_timestamp*, *new_window*, *num_window*) contain variables that are not useful for our model (e.g. the participant name). We then remove them from the dataset.
 
 ```{r}
 training   <- training[,-c(1:7)]
@@ -75,38 +75,48 @@ The datasets are now ready for the modeling stage.
 
 ##Build a predictive model
 
+###Decision tree
+
 We begin with partitioning the first set into training and validation sets (60% for training, 40% for testing):
 
 ```{r}
-set.seed(1309)
-subsamples <- createDataPartition(y=training$classe, p=0.6, list=FALSE)
-subTraining <- training[subsamples, ] 
-subTesting <- training[-subsamples, ]
+set.seed(1701)
+partition <- createDataPartition(y=training$classe, p=0.6, list=FALSE)
+subTraining <- training[partition, ] 
+subTesting <- training[-partition, ]
 ```
 
 We first implement a model by means of a decision tree:
 
 ```{r}
-model1 <- rpart(classe ~ ., data=subTraining, method="class")
-prediction1 <- predict(model1, subTesting, type = "class")
-rpart.plot(model1, main="Classification Tree", extra=102, under=TRUE, faclen=0)
-print(confusionMatrix(prediction1, subTesting$classe))
+modeldc <- rpart(classe ~ ., data=subTraining, method="class")
+predictiondc <- predict(modeldc, subTesting, type = "class")
+rpart.plot(modeldc, main="Classification Tree")
+print(confusionMatrix(predictiondc, subTesting$classe))
+accuracydc <- sum(predictiondc == subTesting$classe) / nrow(subTesting)
+osedc <- 1-accuracydc
 ```
 
-The accuracy of our first model is only 0.71, so we build a new model based on random forests.
+The accuracy of our first model is only `r accuracydc` and the Out-of-Sample error is `r osedc`, so we build a new model based on random forests for better results.
+
+###Random forests
 
 ```{r}
-model2 <- randomForest(classe ~. , data=subTraining, method="class")
-prediction2 <- predict(model2, subTesting, type = "class")
-print(confusionMatrix(prediction2, subTesting$classe))
+modelrf <- randomForest(classe ~. , data=subTraining, method="class")
+predictionrf <- predict(modelrf, subTesting, type = "class")
+print(confusionMatrix(predictionrf, subTesting$classe))
+accuracyrf <- sum(predictionrf == subTesting$classe) / nrow(subTesting)
+oserf <- 1-accuracyrf
 ```
+
+The accuracy of our second model is good `r accuracyrf` and the Out-of-Sample error is `r oserf` , therefore we choose this one as our predictive model.
 
 ##Results
 
 The model based on random forests can now be applied to the testing dataset:
 
 ```{r}
-predictfinal <- predict(model2, testing, type="class")
+predictfinal <- predict(modelrf, testing, type="class")
 print(predictfinal)
 ```
 
