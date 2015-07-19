@@ -4,7 +4,7 @@ Please use this link to access the gh-page for this project:
 
 [http://mauriziopinto.github.io/predmachlearn-030/predmachlearn-030.html](http://mauriziopinto.github.io/predmachlearn-030/predmachlearn-030.html)
 
-The goal of this project is to use the Weight Lifting Exercises dataset (see the References section) to investigate "how (well)" an activity (barbell lift) was performed by 6 participants. Data has been collected by means of on-body sensing approach and the participants were asked one to perfom set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashion:
+The goal of this project is to use the Weight Lifting Exercises dataset (see the References section) to investigate "how (well)" an activity (barbell lift) was performed by 6 participants. Data has been collected by means of on-body sensing approach and the participants were asked to perfom one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashion:
 
 * exactly according to the specification (Class A)
 * throwing the elbows to the front (Class B)
