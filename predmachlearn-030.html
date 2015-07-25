@@ -63,12 +63,13 @@ img {
 <div id="header">
 <h1 class="title">Practical Machine Learning 030 - Writeup Assignment</h1>
 <h4 class="author"><em>Maurizio Pinto</em></h4>
+<h4 class="date"><em>July 25th 2015</em></h4>
 </div>
 
 
 <div id="synopsis" class="section level2">
 <h2>Synopsis</h2>
-<p>The goal of this project is to use the Weight Lifting Exercises dataset (see the References section) to investigate “how (well)” an activity (barbell lift) was performed by 6 participants. Data has been collected by means of on-body sensing approach and the participants were asked to perform one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashion:</p>
+<p>The goal of this project is to use the Weight Lifting Exercises dataset (see the References section) to investigate “how (well)” an activity (barbell lift) was performed by 6 participants. Data has been collected by means of on-body sensors and the participants were asked to perform one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashions:</p>
 <ul>
 <li>exactly according to the specification (Class A)</li>
 <li>throwing the elbows to the front (Class B)</li>
@@ -93,7 +94,7 @@ testing &lt;- read.csv(&quot;data/pml-testing.csv&quot;, na.strings = c(&quot;NA
 <li>training: 19622 observations of 160 variables</li>
 <li>testing: 20 observations of 160 variables</li>
 </ul>
-<p>Many columns contain more that 90% of missing values: since those variables would not be useful for our model, we remove them.</p>
+<p>Many columns contain more than 90% of missing values: since those variables would not be useful for our model, we remove them.</p>
 <pre class="r"><code>training &lt;-training[,colSums(is.na(training)) == 0]
 testing &lt;-testing[,colSums(is.na(testing)) == 0]</code></pre>
 <ul>
@@ -212,7 +213,7 @@ print(predictfinal)</code></pre>
 <div id="references" class="section level2">
 <h2>References</h2>
 <p>Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human ’13) . Stuttgart, Germany: ACM SIGCHI, 2013.</p>
-<p>201500719 v0.99</p>
+<p>201500725 v1.00</p>
 </div>
 
 

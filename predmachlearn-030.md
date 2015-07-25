@@ -1,11 +1,12 @@
 # Practical Machine Learning 030 - Writeup Assignment
 Maurizio Pinto  
+July 25th 2015  
 
 
 
 ##Synopsis
 
-The goal of this project is to use the Weight Lifting Exercises dataset (see the References section) to investigate "how (well)" an activity (barbell lift) was performed by 6 participants. Data has been collected by means of on-body sensing approach and the participants were asked to perform one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashion:
+The goal of this project is to use the Weight Lifting Exercises dataset (see the References section) to investigate "how (well)" an activity (barbell lift) was performed by 6 participants. Data has been collected by means of on-body sensors and the participants were asked to perform one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashions:
 
 * exactly according to the specification (Class A)
 * throwing the elbows to the front (Class B)
@@ -41,7 +42,7 @@ The dimensions of the datasets are:
 * training: 19622 observations of 160 variables
 * testing: 20 observations of 160 variables
 
-Many columns contain more that 90% of missing values: since those variables would not be useful for our model, we remove them.
+Many columns contain more than 90% of missing values: since those variables would not be useful for our model, we remove them.
 
 
 ```r
@@ -206,4 +207,4 @@ print(predictfinal)
 
 Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
 
-201500719 v0.99
+201500725 v1.00
